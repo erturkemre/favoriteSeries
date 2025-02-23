@@ -1,0 +1,243 @@
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9fafb;
+  color: #2d3436;
+  overflow-x: hidden;
+}
+
+header {
+  background: #34495e;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+.hamburger {
+  display: none;
+}
+#home {
+  text-align: center;
+  padding: 50px;
+  background-color: #ecf0f1;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#hero {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  padding: 20px, 20px;
+}
+
+.characters,
+.episodes,
+.favorite-scene {
+  padding: 20px;
+  background: white;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.episode-list {
+  display: flex;
+  gap: 15px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+  animation: infiniteSlide 20s linear infinite;
+}
+
+.episode {
+  background: #f3f4f6;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 320px;
+  scroll-snap-align: start;
+  transition: transform 0.3s, background 0.3s;
+  position: relative;
+}
+
+.episode:hover {
+  transform: scale(1.05);
+  background: #dfe6e9;
+}
+.episode-list:hover {
+  scroll-behavior: auto;
+}
+
+.episode .favorite-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: gray;
+  transition: color 0.3s ease;
+}
+
+.episode .favorite-icon.active {
+  color: red;
+}
+.episode:hover::after {
+  content: attr(data-summary);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  width: 90%;
+  text-align: center;
+  font-size: 14px;
+}
+
+@keyframes infiniteSlide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.favorite-scene iframe {
+  width: 100%;
+  max-width: 560px;
+  border-radius: 10px;
+}
+
+.character-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.character-card {
+  width: 200px;
+  height: 300px;
+  perspective: 1000px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.character-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.character-card:hover .character-inner {
+  transform: rotateY(180deg);
+}
+
+.character-front,
+.character-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.character-front {
+  background: #3498db;
+  color: white;
+}
+
+.character-front img {
+  max-width: 10rem;
+  height: auto;
+  border-radius: 10px;
+}
+
+.character-back {
+  background: #2c3e50;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+  padding: 15px;
+  background: #34495e;
+  color: white;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #34495e;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+  .hamburger {
+    display: block;
+  }
+  .menu-section {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+  .character-card {
+    width: 150px;
+    height: 225px;
+  }
+
+  .episode {
+    min-width: 250px;
+  }
+  footer {
+    display: flex;
+    flex-direction: column;
+  }
+}
